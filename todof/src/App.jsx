@@ -11,7 +11,7 @@ const App = () => {
   const [fs, setFs] = useState(1);
   const [data, setData] = useState([]);
   const [delact, setDelact] = useState(false);
-  const apiUrl = "https://todo-mern-api-hyzi.onrender.com";
+  const apiUrl = "https://todo-mern-api-hyzi.onrender.com/";
   let [idc, setIdc] = useState(10);
 
   const login = async (usr) => {
