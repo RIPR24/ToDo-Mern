@@ -4,7 +4,6 @@ import Nav from "./navbar";
 
 export const TodoContext = createContext();
 
-
 const App = () => {
   const [vtype, setVtype] = useState("list");
   const [cust, setCust] = useState({});
@@ -39,6 +38,17 @@ const App = () => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    let copy = [...data].filter((el) => {
+      if (el.id) {
+        return el;
+      }
+    });
+    if (copy.length !== data.length) {
+      setData(copy);
+    }
+  }, [data]);
 
   return (
     <TodoContext.Provider
