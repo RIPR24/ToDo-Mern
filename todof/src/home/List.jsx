@@ -13,7 +13,7 @@ const List = ({ obj, handleDragStart }) => {
   return (
     <motion.div
       layout
-      draggable="true"
+      draggable={!modify}
       onMouseMove={() => {
         setEdit(true);
       }}
@@ -47,6 +47,7 @@ const List = ({ obj, handleDragStart }) => {
           src={el}
           onClick={() => {
             setModify(!modify);
+            setEdit(false);
           }}
           style={{ position: "absolute", top: 5, right: -20, zIndex: 0 }}
         />

@@ -22,9 +22,24 @@ const Nav = () => {
         left: 0,
         padding: "10px 50px",
         backgroundColor: "#000000",
+        zIndex: 1,
       }}
     >
       <div style={{ display: "flex", gap: 20 }}>
+        {(pop.p1 || pop.p2 || pop.p3) && (
+          <div
+            style={{
+              height: "100%",
+              width: "100%",
+              position: "fixed",
+              top: 0,
+              left: 0,
+            }}
+            onClick={() => {
+              setPop({ p1: false, p2: false, p3: false });
+            }}
+          ></div>
+        )}
         <div style={{ position: "relative" }}>
           <img
             src={fonts}
@@ -56,6 +71,7 @@ const Nav = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     borderRadius: 10,
+                    zIndex: 1,
                   }}
                 >
                   <input
@@ -96,6 +112,7 @@ const Nav = () => {
                   flexDirection: "column",
                   backgroundColor: "#101010",
                   borderRadius: 5,
+                  zIndex: 1,
                 }}
               >
                 <div

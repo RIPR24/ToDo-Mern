@@ -19,7 +19,7 @@ const Card = ({ obj, handleDragStart }) => {
       onMouseLeave={() => {
         setEdit(false);
       }}
-      draggable="true"
+      draggable={!modify}
       onDragStart={(e) => handleDragStart(e, obj)}
       className="list-el"
       style={{ width: "95%", borderRadius: 10, position: "relative" }}
@@ -31,6 +31,7 @@ const Card = ({ obj, handleDragStart }) => {
           src={el}
           onClick={() => {
             setModify(!modify);
+            setEdit(false);
           }}
           style={{ position: "absolute", top: 5, right: -20 }}
         />
