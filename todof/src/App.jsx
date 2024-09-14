@@ -4,50 +4,6 @@ import Nav from "./navbar";
 
 export const TodoContext = createContext();
 
-// const dummy = [
-//   {
-//     id: 1,
-//     title: "title 1",
-//     details:
-//       "Some wikis will present users with an edit button or link directly on the page being viewed.",
-//     type: 0,
-//   },
-//   {
-//     id: 2,
-//     title: "title 2",
-//     details:
-//       "Some wikis will present users with an edit button or link directly on the page being viewed.",
-//     type: 1,
-//   },
-//   {
-//     id: 3,
-//     title: "title 3",
-//     details:
-//       "Some wikis will present users with an edit button or link directly on the page being viewed.",
-//     type: 2,
-//   },
-//   {
-//     id: 4,
-//     title: "title 4",
-//     details:
-//       "Some wikis will present users with an edit button or link directly on the page being viewed.",
-//     type: 0,
-//   },
-//   {
-//     id: 5,
-//     title: "title 5",
-//     details:
-//       "Some wikis will present users with an edit button or link directly on the page being viewed.",
-//     type: 1,
-//   },
-//   {
-//     id: 6,
-//     title: "title 6",
-//     details:
-//       "Some wikis will present users with an edit button or link directly on the page being viewed.",
-//     type: 2,
-//   },
-// ];
 
 const App = () => {
   const [vtype, setVtype] = useState("list");
