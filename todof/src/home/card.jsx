@@ -14,7 +14,9 @@ const Card = ({ obj, handleDragStart }) => {
       layout
       //layoutId={obj.id}
       onMouseMove={() => {
-        setEdit(true);
+        if (!modify) {
+          setEdit(true);
+        }
       }}
       onMouseLeave={() => {
         setEdit(false);
