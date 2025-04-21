@@ -5,39 +5,35 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const Addcomp = () => {
   const [addwin, setAddwin] = useState(false);
-  const { fs, apiUrl, cust, data, setData, idc, setIdc } =
-    useContext(TodoContext);
+  const { fs, apiUrl, cust, data, setData } = useContext(TodoContext);
   const [adding, setAdding] = useState(false);
 
   const addCard = async () => {
     const tit = document.getElementById("add-title").value;
     const det = document.getElementById("add-det").value;
-    let card = { title: tit, details: det, type: 0, id: idc + 1 };
+    let card = { title: tit, details: det, type: 0, id: Date.now() };
     const copy = [...data, card];
-    setData([...data, card]);
+    setData(copy);
 
     if (cust?._id) {
-      setAdding(!adding);
+      setAdding((p) => !p);
       try {
         const res = await fetch(apiUrl + "addcard", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             id: cust._id,
-            idc: idc + 1,
             data: copy,
           }),
         });
         const dat = await res.json();
         setAdding(false);
-        setIdc(idc + 1);
       } catch (error) {
         alert("error");
         setAdding(false);
       }
-    } else {
-      setIdc(idc + 1);
     }
+    setAddwin(false);
   };
 
   return (

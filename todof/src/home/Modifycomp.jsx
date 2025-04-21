@@ -32,7 +32,6 @@ const Modifycomp = ({ obj, setModify }) => {
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             id: cust._id,
-            idc: idc,
             data: copy,
           }),
         });

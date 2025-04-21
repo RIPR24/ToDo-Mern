@@ -11,7 +11,6 @@ const App = () => {
   const [data, setData] = useState([]);
   const [delact, setDelact] = useState(false);
   const apiUrl = "https://todo-mern-api-hyzi.onrender.com/";
-  let [idc, setIdc] = useState(10);
 
   const login = async (usr) => {
     const res = await fetch(apiUrl + "login", {
@@ -24,7 +23,6 @@ const App = () => {
     if (responce.status === "success") {
       setCust(responce.user);
       setData(responce.user.cards?.data || []);
-      setIdc(responce.user.cards?.idc || 0);
     }
   };
 
@@ -64,8 +62,6 @@ const App = () => {
         delact,
         setDelact,
         apiUrl,
-        idc,
-        setIdc,
       }}
     >
       <div style={{ display: "grid", placeContent: "center" }}>

@@ -9,10 +9,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  cards: {
-    idc: Number,
-    data: [],
-  },
+  cards: String,
 });
 
 const Usermodel = mongoose.model("users", UserSchema);

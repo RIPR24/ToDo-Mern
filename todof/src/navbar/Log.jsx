@@ -3,7 +3,7 @@ import { TodoContext } from "../App";
 import { motion } from "framer-motion";
 
 const Log = ({ setPop }) => {
-  const { cust, setCust, setData, apiUrl, setIdc } = useContext(TodoContext);
+  const { cust, setCust, setData, apiUrl, data } = useContext(TodoContext);
   const [msg, setMsg] = useState(" ");
   const [dis, setDis] = useState({ p1: true, p2: true });
 
@@ -28,9 +28,9 @@ const Log = ({ setPop }) => {
       const responce = await res.json();
 
       if (responce.status === "success") {
+        console.log(responce);
         setCust(responce.user);
-        setData(responce.user.cards?.data || []);
-        setIdc(responce.user.cards?.idc || 0);
+        setData(responce.user.cards ? JSON.parse(responce.user.cards) : []);
         setDis({ p1: true, p2: true });
         localStorage.setItem(
           "user-det",
@@ -52,7 +52,7 @@ const Log = ({ setPop }) => {
     const username = document.querySelector("#username").value;
     const password = document.querySelector("#pass").value;
     if (username.length > 0 && password.length > 2) {
-      const usr = { username, password };
+      const usr = { username, password, data };
 
       const res = await fetch(apiUrl + "signup", {
         method: "POST",
@@ -62,9 +62,9 @@ const Log = ({ setPop }) => {
 
       const responce = await res.json();
       if (responce.status === "success") {
+        console.log(responce);
         setCust(responce.user);
         setData(responce.user.cards?.data || []);
-        setIdc(responce.user.cards?.idc || 0);
         setMsg(responce.status);
         setDis({ p1: true, p2: true });
         localStorage.setItem("user-set", JSON.stringify(usr));
