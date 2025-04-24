@@ -182,7 +182,7 @@ const index = () => {
     <div className="home">
       <Col
         arr={data.filter((el) => el.type === 0)}
-        head={"Bugs List"}
+        head={"Todo List"}
         type={0}
         movEl={movEl}
       />

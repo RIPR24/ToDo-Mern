@@ -143,7 +143,7 @@ const Nav = () => {
                   }}
                 >
                   <img src={card} alt="view" style={{ scale: 0.8 }} />
-                  <p>Card</p>
+                  <p>{vtype === "card" ? "List" : "Card"}</p>
                 </div>
               </motion.div>
             )}
