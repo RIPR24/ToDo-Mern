@@ -27,7 +27,21 @@ const Card = ({ obj, handleDragStart }) => {
       style={{ width: "95%", borderRadius: 10, position: "relative" }}
     >
       <p style={{ fontSize: `${fs + 0.3}rem`, fontWeight: 500 }}>{obj.title}</p>
-      <p style={{ fontSize: `${fs}rem` }}>{obj.details}</p>
+      <p style={{ fontSize: `${fs}rem` }}>
+        {obj.details.map((el, i) => {
+          return (
+            <span key={i}>
+              {el.type === "a" ? (
+                <a href={el.txt} target="_blank">
+                  {el.txt}
+                </a>
+              ) : (
+                el.txt
+              )}
+            </span>
+          );
+        })}
+      </p>
       {edit && (
         <img
           src={el}

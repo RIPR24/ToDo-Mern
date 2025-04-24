@@ -1,10 +1,15 @@
 import { motion } from "framer-motion";
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { TodoContext } from "../App";
 
 const Modifycomp = ({ obj, setModify }) => {
-  const [details, setDetails] = useState(obj);
-  const { fs, data, setData, idc, cust, apiUrl } = useContext(TodoContext);
+  const deta = useMemo(() => {
+    let st = "";
+    obj.details.forEach((e) => (st += e.txt));
+    return st;
+  }, []);
+  const [details, setDetails] = useState({ ...obj, details: deta });
+  const { fs, data, setData, cust, apiUrl } = useContext(TodoContext);
   const [adding, setAdding] = useState(false);
 
   const handleChange = (e) => {
@@ -21,7 +26,10 @@ const Modifycomp = ({ obj, setModify }) => {
     setAdding(true);
     let copy = [...data];
     const nidx = copy.findIndex((c) => c.id === +obj.id);
-    copy[nidx] = details;
+    const ex = /(https?:\/\/[^\s]+)/;
+    let spl = details.details.split(ex);
+    spl = spl.map((el) => ({ txt: el, type: ex.test(el) ? "a" : "s" }));
+    copy[nidx] = { ...details, details: spl };
 
     setData(copy);
 

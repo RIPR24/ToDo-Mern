@@ -132,7 +132,7 @@ const Nav = () => {
                 </div>
                 <div
                   onClick={() => {
-                    setVtype("card");
+                    setVtype((p) => (p === "card" ? "list" : "card"));
                     setPop({ p1: false, p2: false, p3: false });
                   }}
                   style={{

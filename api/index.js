@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const Usermodel = require("./models/Users");
-const { createCipheriv, createHmac, createDecipheriv } = require("crypto");
+const { createHmac } = require("crypto");
 const { decrypt, encrypt } = require("./utils/encription");
 require("dotenv").config();
 
@@ -30,7 +31,13 @@ app.post("/login", async (req, res) => {
       .digest("base64");
     if (hpass === chk.password) {
       chk.cards = decrypt(username, chk.cards);
-      res.json({ status: "success", user: chk });
+      const tok = jwt.sign({ id: chk._id }, process.env.ACCESS_TOKEN, {
+        expiresIn: "30d",
+      });
+      res.json({
+        status: "success",
+        user: { username: chk.username, cards: chk.cards, token: tok },
+      });
     } else {
       res.json({ status: "Wrong Password" });
     }
@@ -56,7 +63,13 @@ app.post("/signup", async (req, res) => {
       cards: cards || "",
     });
     user.cards = decrypt(username, user.cards);
-    res.json({ status: "success", user });
+    const tok = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN, {
+      expiresIn: "30d",
+    });
+    res.json({
+      status: "success",
+      user: { username: chk.username, cards: chk.cards, token: tok },
+    });
   }
 });
 
@@ -67,6 +80,27 @@ app.post("/addcard", async (req, res) => {
 
   await user.save();
   res.json({ user, status: "success" });
+});
+
+app.post("/logtok", async (req, res) => {
+  const { tok } = req.body;
+  jwt.verify(tok, process.env.ACCESS_TOKEN, async (err, pl) => {
+    if (err) {
+      res.json({ status: "failed" });
+    } else {
+      const chk = await Usermodel.findById(pl.id);
+      if (chk.username) {
+        chk.cards = decrypt(chk.username, chk.cards);
+        const tok = jwt.sign({ id: chk._id }, process.env.ACCESS_TOKEN, {
+          expiresIn: "30d",
+        });
+        res.json({
+          status: "success",
+          user: { username: chk.username, cards: chk.cards, token: tok },
+        });
+      }
+    }
+  });
 });
 
 app.use((err, req, res, next) => {

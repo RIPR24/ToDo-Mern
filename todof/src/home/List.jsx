@@ -41,7 +41,17 @@ const List = ({ obj, handleDragStart }) => {
       <p style={{ fontSize: `${fs + 0.3}rem`, fontWeight: 500, zIndex: -1 }}>
         {obj.title}
       </p>
-      {win && <p style={{ fontSize: `${fs}rem`, zIndex: -1 }}>{obj.details}</p>}
+      {win && (
+        <p style={{ fontSize: `${fs}rem`, zIndex: -1 }}>
+          {obj.details.map((el, i) => {
+            return (
+              <span key={i}>
+                {el.type === "a" ? <a href={el.txt}>{el.txt}</a> : el.txt}
+              </span>
+            );
+          })}
+        </p>
+      )}
       {edit && (
         <img
           src={el}

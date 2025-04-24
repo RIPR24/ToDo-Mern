@@ -28,14 +28,11 @@ const Log = ({ setPop }) => {
       const responce = await res.json();
 
       if (responce.status === "success") {
-        console.log(responce);
         setCust(responce.user);
         setData(responce.user.cards ? JSON.parse(responce.user.cards) : []);
         setDis({ p1: true, p2: true });
-        localStorage.setItem(
-          "user-det",
-          JSON.stringify({ username, password })
-        );
+        localStorage.setItem("tok", responce.user.token);
+        setPop({ p1: false, p2: false, p3: false });
       } else {
         setMsg(responce.status);
         console.log(responce);
@@ -62,12 +59,11 @@ const Log = ({ setPop }) => {
 
       const responce = await res.json();
       if (responce.status === "success") {
-        console.log(responce);
         setCust(responce.user);
         setData(responce.user.cards?.data || []);
-        setMsg(responce.status);
         setDis({ p1: true, p2: true });
-        localStorage.setItem("user-set", JSON.stringify(usr));
+        localStorage.setItem("tok", responce.user.token);
+        setPop({ p1: false, p2: false, p3: false });
       } else {
         setMsg(responce.status);
         console.log(responce);

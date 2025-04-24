@@ -11,7 +11,10 @@ const Addcomp = () => {
   const addCard = async () => {
     const tit = document.getElementById("add-title").value;
     const det = document.getElementById("add-det").value;
-    let card = { title: tit, details: det, type: 0, id: Date.now() };
+    const ex = /(https?:\/\/[^\s]+)/;
+    let spl = det.split(ex);
+    spl = spl.map((el) => ({ txt: el, type: ex.test(el) ? "a" : "s" }));
+    let card = { title: tit, details: spl, type: 0, id: Date.now() };
     const copy = [...data, card];
     setData(copy);
 

@@ -20,7 +20,6 @@ const decrypt = (uname, data) => {
     .digest("base64")
     .substring(0, 16);
   const dcipher = createDecipheriv("aes-192-cbc", key, iv);
-  console.log(data);
   const cards =
     dcipher.update(data, "latin1", "utf-8") + dcipher.final("utf-8");
   return cards;
