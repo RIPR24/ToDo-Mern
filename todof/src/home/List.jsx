@@ -26,19 +26,16 @@ const List = ({ obj, handleDragStart }) => {
       }}
       className="list-el"
       style={{ width: "95%", borderRadius: 10, position: "relative" }}
+      onClick={() => {
+        setWin((p) => !p);
+      }}
     >
-      <div
+      <p
         onClick={() => {
-          setWin(!win);
+          setWin((p) => !p);
         }}
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          zIndex: 0,
-        }}
-      ></div>
-      <p style={{ fontSize: `${fs + 0.3}rem`, fontWeight: 500, zIndex: -1 }}>
+        style={{ fontSize: `${fs + 0.3}rem`, fontWeight: 500, zIndex: -1 }}
+      >
         {obj.title}
       </p>
       {win && (
@@ -46,7 +43,13 @@ const List = ({ obj, handleDragStart }) => {
           {obj.details.map((el, i) => {
             return (
               <span key={i}>
-                {el.type === "a" ? <a href={el.txt}>{el.txt}</a> : el.txt}
+                {el.type === "a" ? (
+                  <a style={{ color: "#6db1ed" }} href={el.txt}>
+                    {el.txt}
+                  </a>
+                ) : (
+                  el.txt
+                )}
               </span>
             );
           })}

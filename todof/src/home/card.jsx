@@ -32,7 +32,7 @@ const Card = ({ obj, handleDragStart }) => {
           return (
             <span key={i}>
               {el.type === "a" ? (
-                <a href={el.txt} target="_blank">
+                <a style={{ color: "#6db1ed" }} href={el.txt} target="_blank">
                   {el.txt}
                 </a>
               ) : (
