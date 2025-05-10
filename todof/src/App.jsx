@@ -5,7 +5,7 @@ import Nav from "./navbar";
 export const TodoContext = createContext();
 
 const App = () => {
-  const [vtype, setVtype] = useState("card");
+  const [vtype, setVtype] = useState("list");
   const [cust, setCust] = useState({});
   const [fs, setFs] = useState(1);
   const [data, setData] = useState([]);

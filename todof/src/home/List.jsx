@@ -25,7 +25,13 @@ const List = ({ obj, handleDragStart }) => {
         setDelact(false);
       }}
       className="list-el"
-      style={{ width: "95%", borderRadius: 10, position: "relative" }}
+      style={{
+        width: "95%",
+        borderRadius: 10,
+        position: "relative",
+        maxWidth: 316,
+        wordWrap: "break-word",
+      }}
       onClick={() => {
         setWin((p) => !p);
       }}

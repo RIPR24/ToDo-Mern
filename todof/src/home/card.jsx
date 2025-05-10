@@ -24,7 +24,13 @@ const Card = ({ obj, handleDragStart }) => {
       draggable={!modify}
       onDragStart={(e) => handleDragStart(e, obj)}
       className="list-el"
-      style={{ width: "95%", borderRadius: 10, position: "relative" }}
+      style={{
+        width: "95%",
+        borderRadius: 10,
+        position: "relative",
+        maxWidth: 316,
+        wordWrap: "break-word",
+      }}
     >
       <p style={{ fontSize: `${fs + 0.3}rem`, fontWeight: 500 }}>{obj.title}</p>
       <p style={{ fontSize: `${fs}rem` }}>
